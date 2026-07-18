@@ -20,6 +20,24 @@ When a power line breaks due to rain, tree fall, or overload, this system detect
 6. Dashboard shows live fault status
 
 ---
+## Screenshots
+
+### Hardware Components
+![ESP32 Board](esp32.jpg)
+![ACS712 Current Sensor](acs712.jpg)
+![ZMPT101B Voltage Sensor](zmpt101b.jpg)
+![Complete Hardware Setup](hardware_setup.jpg)
+
+### Dashboard
+![React Dashboard](dashboard.png)
+
+### ThingSpeak Cloud Data
+![ThingSpeak Graph](thingspeak_graph.png)
+
+### Email Alert
+![Email Alert](email_alert.png)
+
+---
 
 ## Tech used
 
