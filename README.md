@@ -1,16 +1,76 @@
-# React + Vite
+# LTBDAIS — LT Line Break Detection and Auto Isolation System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+SIH 2025 project built for KSEBL (Kerala State Electricity Board) under Disaster Management theme.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## What this project does
 
-## React Compiler
+When a power line breaks due to rain, tree fall, or overload, this system detects it automatically and isolates the affected line — without anyone manually switching it off.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## How it works
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. ESP32 reads current and voltage from real sensors every 16 seconds
+2. Data is sent to ThingSpeak cloud via WiFi
+3. Spring Boot backend reads the cloud data automatically
+4. Machine learning model identifies the fault type
+5. Affected line is isolated and an email alert is sent
+6. Dashboard shows live fault status
+
+---
+
+## Tech used
+
+- React (frontend dashboard)
+- Spring Boot Java (backend)
+- Python Flask + RandomForest (ML model)
+- MySQL (database)
+- ThingSpeak (cloud)
+- ESP32 + ACS712 + ZMPT101B (hardware)
+
+---
+
+## Fault types detected
+
+- Rain → voltage drops → VOLTAGE_SAG
+- Tree fall → current drops to zero → LINE_BREAK
+- Overload → current too high → OVERLOAD
+
+---
+
+## Hardware setup
+
+- ESP32 WROOM 38 pin board
+- ACS712 5A current sensor (GPIO 36)
+- ZMPT101B voltage sensor (GPIO 39)
+- Relay module for auto isolation
+- LED and buzzer for visual/audio alert
+
+---
+
+## How to run
+
+**Backend:**
+cd ltbdais-backend/ltbdais-backend
+mvnw spring-boot:run
+
+**ML service:**
+cd ltbdais-ml
+python app.py
+
+**Frontend:**
+cd ltbdais-frontend
+npm install
+npm run dev
+
+Open `localhost:5173` in browser.
+
+---
+
+## About
+
+Developed by Agalya M
+ECE, VSB Engineering College, Karur
+Batch 2024–2028
